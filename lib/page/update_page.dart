@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:uas_flutter_biodata/database/dbhelper.dart';
+import 'package:uas_flutter_biodata/database/DbHelper.dart';
 import 'package:uas_flutter_biodata/model/user.dart';
 
 class UpdatePage extends StatefulWidget {
@@ -12,10 +12,10 @@ class UpdatePage extends StatefulWidget {
 }
 
 class _UpdatePageState extends State<UpdatePage> {
-  dbHelper dbhelper = dbHelper();
-  TextEditingController namaController = TextEditingController();
-  TextEditingController nimController = TextEditingController();
+  DbHelper dbhelper = DbHelper();
+  TextEditingController nameController = TextEditingController();
   TextEditingController alamatController = TextEditingController();
+  TextEditingController nimController = TextEditingController();
   TextEditingController dateController = TextEditingController();
   int _value = 1;
 
@@ -23,11 +23,11 @@ class _UpdatePageState extends State<UpdatePage> {
   void initState() {
     // TODO: implement initState
     dbhelper.database();
-    namaController.text = widget.user.nama!;
+    nameController.text = widget.user.name!;
+    alamatController.text = widget.user.alamat!;
     nimController.text = widget.user.nim!.toString();
-    alamatController.text = widget.user.alamat!.toString();
     dateController.text = widget.user.updatedAt.toString();
-    _value = widget.user.jk!;
+    _value = widget.user.type!;
 
     super.initState();
   }
@@ -41,7 +41,7 @@ class _UpdatePageState extends State<UpdatePage> {
     final DateTime? picked = await showDatePicker(
         context: context,
         initialDate: selectedDate,
-        firstDate: DateTime(2015, 8),
+        firstDate: DateTime(1999, 8),
         lastDate: DateTime(2101));
     if (picked != null && picked != selectedDate) {
       String formattedDate = DateFormat('dd-MM-yyyy').format(picked);
@@ -57,7 +57,7 @@ class _UpdatePageState extends State<UpdatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Update"),
+        title: Text("Update Biodata"),
       ),
       body: SingleChildScrollView(
         child: SafeArea(
@@ -66,16 +66,17 @@ class _UpdatePageState extends State<UpdatePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("nim"),
+              Text("NIM"),
               TextField(
+                keyboardType: TextInputType.number,
                 controller: nimController,
               ),
               SizedBox(
                 height: 20,
               ),
-              Text("nama"),
+              Text("Nama"),
               TextField(
-                controller: namaController,
+                controller: nameController,
               ),
               SizedBox(
                 height: 20,
@@ -130,10 +131,10 @@ class _UpdatePageState extends State<UpdatePage> {
               ElevatedButton(
                   onPressed: () async {
                     await dbhelper.update(widget.user.id!, {
-                      'nim': nimController.text,
-                      'nama': namaController.text,
-                      'jk': _value,
+                      'name': nameController.text,
                       'alamat': alamatController.text,
+                      'type': _value,
+                      'nim': nimController.text,
                       'updated_at': dateController.text,
                     });
                     Navigator.pop(context);

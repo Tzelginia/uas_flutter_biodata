@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:uas_flutter_biodata/database/dbhelper.dart';
+import 'package:uas_flutter_biodata/database/DbHelper.dart';
 
 class CreatePage extends StatefulWidget {
   const CreatePage({Key? key}) : super(key: key);
@@ -10,10 +10,10 @@ class CreatePage extends StatefulWidget {
 }
 
 class _CreatePageState extends State<CreatePage> {
-  dbHelper dbhelper = dbHelper();
-  TextEditingController namaController = TextEditingController();
-  TextEditingController nimController = TextEditingController();
+  DbHelper dbhelper = DbHelper();
+  TextEditingController nameController = TextEditingController();
   TextEditingController alamatController = TextEditingController();
+  TextEditingController nimController = TextEditingController();
   TextEditingController dateController = TextEditingController();
   int _value = 1;
 
@@ -58,7 +58,7 @@ class _CreatePageState extends State<CreatePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("NIM"),
+              Text("Nim"),
               TextField(
                 keyboardType: TextInputType.number,
                 controller: nimController,
@@ -68,7 +68,14 @@ class _CreatePageState extends State<CreatePage> {
               ),
               Text("Nama"),
               TextField(
-                controller: namaController,
+                controller: nameController,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text("Alamat"),
+              TextField(
+                controller: alamatController,
               ),
               SizedBox(
                 height: 20,
@@ -99,13 +106,6 @@ class _CreatePageState extends State<CreatePage> {
               SizedBox(
                 height: 20,
               ),
-              Text("Alamat"),
-              TextField(
-                controller: alamatController,
-              ),
-              SizedBox(
-                height: 20,
-              ),
               Text("Tanggal Lahir"),
               TextField(
                 controller: dateController,
@@ -123,10 +123,10 @@ class _CreatePageState extends State<CreatePage> {
               ElevatedButton(
                   onPressed: () async {
                     int idInsert = await dbhelper.insert({
-                      'nim': namaController.text,
-                      'nama': namaController.text,
-                      'jk': _value,
+                      'name': nameController.text,
                       'alamat': alamatController.text,
+                      'type': _value,
+                      'nim': nimController.text,
                       'created_at': dateController.text,
                       'updated_at': dateController.text,
                     });
