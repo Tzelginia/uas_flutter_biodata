@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uas_flutter_biodata/model/user.dart';
+import 'home_page.dart';
 
 class DetailPage extends StatefulWidget {
   final User user;
@@ -15,6 +16,8 @@ class _DetailPageState extends State<DetailPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Detail Biodata"),
+        centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: SafeArea(
@@ -106,6 +109,19 @@ class _DetailPageState extends State<DetailPage> {
           ),
         )),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context){
+                return HomePage();
+              }
+            ),
+            );
+        },
+        child: Icon(Icons.keyboard_arrow_left)
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

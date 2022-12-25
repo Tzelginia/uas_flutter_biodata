@@ -4,6 +4,7 @@ import 'package:uas_flutter_biodata/model/user.dart';
 import 'package:uas_flutter_biodata/page/create_page.dart';
 import 'package:uas_flutter_biodata/page/detail_page.dart';
 import 'package:uas_flutter_biodata/page/update_page.dart';
+import 'package:uas_flutter_biodata/main.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -165,6 +166,19 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context){
+                return MyApp();
+              }
+            ),
+            );
+        },
+        child: Icon(Icons.keyboard_arrow_left)
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
