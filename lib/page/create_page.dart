@@ -24,6 +24,13 @@ class _CreatePageState extends State<CreatePage> {
     super.initState();
   }
 
+  void clearForm() {
+    nameController.clear();
+    alamatController.clear();
+    nimController.clear();
+    dateController.clear();
+  }
+
   // Variable/State untuk mengambil tanggal
   DateTime selectedDate = DateTime.now();
 
@@ -48,9 +55,6 @@ class _CreatePageState extends State<CreatePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Tambah Biodata"),
-      ),
       body: SingleChildScrollView(
         child: SafeArea(
             child: Padding(
@@ -130,8 +134,21 @@ class _CreatePageState extends State<CreatePage> {
                       'created_at': dateController.text,
                       'updated_at': dateController.text,
                     });
-                    print("sudah masuk : " + idInsert.toString());
-                    Navigator.pop(context);
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        content: Text('Biodata Berhasil Disimpan'),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: Text('OK'),
+                          )
+                        ],
+                      ),
+                    );
+                    clearForm();
+                    // print("sudah masuk : " + idInsert.toString());
+                    // Navigator.pop(context);
                   },
                   child: Text("Simpan")),
             ],

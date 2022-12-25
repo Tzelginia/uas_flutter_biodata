@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uas_flutter_biodata/page/create_page.dart';
 import 'package:uas_flutter_biodata/page/home_page.dart';
 
 void main() {
@@ -14,7 +15,24 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: DefaultTabController(
+          length: 2,
+          child: Scaffold(
+            appBar: AppBar(
+                bottom: const TabBar(
+              tabs: [
+                Tab(
+                  text: 'TAMBAH BIODATA',
+                ),
+                Tab(
+                  text: 'LIST BIODATA',
+                )
+              ],
+            )),
+            body: const TabBarView(
+              children: [CreatePage(), HomePage()],
+            ),
+          )),
     );
   }
 }

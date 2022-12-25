@@ -58,19 +58,18 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("List Biodata"),
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const CreatePage()));
-              },
-              icon: const Icon(Icons.add))
-        ],
-      ),
+      // appBar: AppBar(
+      //   actions: [
+      //     IconButton(
+      //         onPressed: () {
+      //           Navigator.push(
+      //               context,
+      //               MaterialPageRoute(
+      //                   builder: (context) => const CreatePage()));
+      //         },
+      //         icon: const Icon(Icons.add))
+      //   ],
+      // ),
       body: RefreshIndicator(
         onRefresh: _refresh,
         child: SafeArea(
@@ -102,13 +101,14 @@ class _HomePageState extends State<HomePage> {
                                       setState(() {});
                                     });
                                   },
-                                  title: Text(snapshot.data![index].name!),
+                                  title: Text(
+                                      snapshot.data![index].nim!.toString()),
                                   subtitle: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        snapshot.data![index].nim!.toString(),
+                                        snapshot.data![index].name!,
                                       ),
                                       snapshot.data![index].type == 1
                                           ? Text(

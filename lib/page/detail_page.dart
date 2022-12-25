@@ -23,43 +23,82 @@ class _DetailPageState extends State<DetailPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("NIM"),
+              widget.user.type! == 1
+                  ? Center(
+                      child: Image(
+                      image: NetworkImage(
+                          "https://media.istockphoto.com/id/1162207969/vector/male-face-icon-in-flat-design-man-avatar-profile-vector-illustration.jpg?b=1&s=170667a&w=0&k=20&c=Z_ASYiL1raziY7gwGRYIGgsBAtegJMVeMV4xjJ5SsmM="),
+                      height: 140,
+                      width: 140,
+                      alignment: Alignment.center,
+                    ))
+                  : Center(
+                      child: Image(
+                      image: NetworkImage(
+                          "https://media.istockphoto.com/id/1162207423/vector/female-face-icon-in-flat-design-woman-avatar-profile-vector-illustration.jpg?b=1&s=170667a&w=0&k=20&c=233txMu9iYVKYUX4HoTpf23S-VIAn4r5faazvT-rElY="),
+                      height: 140,
+                      width: 140,
+                      alignment: Alignment.center,
+                    )),
+              Center(
+                  child: Text(
+                "\n\nNIM",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              )),
               SizedBox(
                 height: 10,
               ),
-              Text(widget.user.nim!.toString()),
+              Center(child: Text(widget.user.nim!.toString())),
               SizedBox(
                 height: 20,
               ),
-              Text("Nama"),
+              Center(
+                  child: Text(
+                "Nama",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              )),
               SizedBox(
                 height: 10,
               ),
-              Text(widget.user.name!),
+              Center(child: Text(widget.user.name!)),
               SizedBox(
                 height: 20,
               ),
-              Text("Alamat"),
+              Center(
+                  child: Text(
+                "Alamat",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              )),
               SizedBox(
                 height: 10,
               ),
-              Text(widget.user.alamat!),
+              Center(child: Text(widget.user.alamat!)),
               SizedBox(
                 height: 20,
               ),
-              Text("Jenis Kelamin"),
+              Center(
+                  child: Text(
+                "Jenis Kelamin",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              )),
               SizedBox(
                 height: 10,
               ),
-              widget.user.type! == 1 ? Text('Laki-laki') : Text('Perempuan'),
+              widget.user.type! == 1
+                  ? Center(child: Text('Laki-laki'))
+                  : Center(child: Text('Perempuan')),
               SizedBox(
                 height: 20,
               ),
-              Text("Tanggal Lahir"),
+              Center(
+                  child: Text(
+                "Tanggal Lahir",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              )),
               SizedBox(
                 height: 10,
               ),
-              Text(widget.user.updatedAt.toString()),
+              Center(child: Text(widget.user.updatedAt.toString())),
               SizedBox(
                 height: 30,
               ),
