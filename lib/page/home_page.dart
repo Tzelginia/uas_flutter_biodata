@@ -167,18 +167,16 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context){
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (BuildContext context) {
                 return MyApp();
-              }
-            ),
+              }),
             );
-        },
-        child: Icon(Icons.keyboard_arrow_left)
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+          },
+          child: Icon(Icons.keyboard_arrow_left)),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

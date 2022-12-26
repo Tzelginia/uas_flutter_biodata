@@ -110,18 +110,11 @@ class _DetailPageState extends State<DetailPage> {
         )),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context){
-                return HomePage();
-              }
-            ),
-            );
-        },
-        child: Icon(Icons.keyboard_arrow_left)
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Icon(Icons.keyboard_arrow_left)),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
